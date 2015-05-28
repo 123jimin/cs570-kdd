@@ -1,5 +1,7 @@
 # KDD
 ## 데이터 준비
-PostgreSQL 서버를 띄우고, `postgres` 사용자의 비밀번호를 `postgres`로 맞춘다. (코드를 직접 수정해도 됨)
+PostgreSQL 서버를 띄우고, `postgres` 사용자의 비밀번호를 `postgres`로 맞춘다. (`src`의 코드를 직접 수정해도 됨)
+
+`psql postgres postgres`로 PostgreSQL 서버에 접속하고, `create database Kdd2013AuthorPaperIdentification`로 데이터베이스를 생성한다.
 
 `dataRev2.postgres` 파일을 이용해 PostgreSQL 데이터베이스를 구축한다. (`./load-rawdata.sh`)
