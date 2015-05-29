@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import pandas, jellyfish
+import numpy as np
 
 def getCSV(file_name, index=None):
 	data = pandas.read_csv("../data/raw/%s.csv" % file_name,
@@ -46,5 +47,15 @@ for row in csv_PaperAuthor:
 		print("%d%%..." % p_next)
 		p_next += 5
 
+p_next = 1
+curr_ind = 0
+
 print("Computing pair features...")
+for row in csv_PaperAuthor:
+	coPaper = dict_coPaper[row[1]]
+	coAuthor = dict_coAuthor[row[0]]
+	curr_ind +=1
+	if curr_ind * 100 >= len(csv_PaperAuthor) * p_next:
+		print("%d%%..." % p_next)
+		p_next += 1
 print("Done.")
