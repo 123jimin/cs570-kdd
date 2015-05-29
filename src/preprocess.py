@@ -39,7 +39,7 @@ for row in csv_PaperAuthor:
 	else:
 		dict_coAuthor[row[0]] = [row[1]]
 	curr_ind +=1
-	if curr_ind * 100 >= csv_PaperAuthor.size * p_next:
+	if curr_ind * 100 >= len(csv_PaperAuthor) * p_next:
 		print("%d%%..." % p_next)
 		p_next += 5
 
