@@ -1,15 +1,36 @@
 #!/usr/bin/env python
 
-import csv
+import pandas
 
 def getCSV(file_name):
-	reader = csv.reader(open("../data/raw/%s.csv" % file_name, 'r'))
-	reader.next() # ignore column titles
-	return reader
+	data = pandas.read_csv("../data/raw/%s.csv" % file_name, compression=None)
+	return data.values
 
-csv_PaperAuthor = getCSV("PaperAuthor")
+dict_coPaper = dict()
+dict_coAuthor = dict()
 
-i = 0
-
-for PaperId, AuthorId, Name, Affiliation in csv_PaperAuthor:
+print("Reading Paper...")
+csv_Paper = getCSV("Paper")
+for row in csv_Paper:
+	# Id, Title, Year, ConferenceId, JournalId, Keyword
 	pass
+
+print("Reading Author...")
+csv_Author = getCSV("Author")
+for row in csv_Author:
+	# Id, Name, Affiliation
+	pass
+
+print("Reading PaperAuthor...")
+csv_PaperAuthor = getCSV("PaperAuthor")
+for row in csv_PaperAuthor:
+	# PaperId, AuthorId, Name, Affiliation
+	if row[1] in dict_coPaper:
+		dict_coPaper[row[1]].append(row[0])
+	else:
+		dict_coPaper[row[1]] = [row[0]]
+	if row[0] in dict_coAuthor:
+		dict_coAuthor[row[0]].append(row[1])
+	else:
+		dict_coAuthor[row[0]] = [row[1]]
+print("Done.")
