@@ -23,6 +23,11 @@ for row in csv_Author:
 
 print("Reading PaperAuthor...")
 csv_PaperAuthor = getCSV("PaperAuthor")
+
+p_next = 5
+curr_ind = 0
+
+print("Computing co-data...")
 for row in csv_PaperAuthor:
 	# PaperId, AuthorId, Name, Affiliation
 	if row[1] in dict_coPaper:
@@ -33,4 +38,10 @@ for row in csv_PaperAuthor:
 		dict_coAuthor[row[0]].append(row[1])
 	else:
 		dict_coAuthor[row[0]] = [row[1]]
+	curr_ind +=1
+	if curr_ind * 100 >= csv_PaperAuthor.size * p_next:
+		print("%d%%..." % p_next)
+		p_next += 5
+
+print("Computing pair features...")
 print("Done.")
