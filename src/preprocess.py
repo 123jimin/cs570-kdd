@@ -1,28 +1,31 @@
 #!/usr/bin/env python
 
-import pandas
+import pandas, jellyfish
 
-def getCSV(file_name):
-	data = pandas.read_csv("../data/raw/%s.csv" % file_name, compression=None)
+def getCSV(file_name, index=None):
+	data = pandas.read_csv("../data/raw/%s.csv" % file_name,
+		compression = None,
+		index_col = index
+	)
 	return data.values
 
 dict_coPaper = dict()
 dict_coAuthor = dict()
 
 print("Reading Paper...")
-csv_Paper = getCSV("Paper")
+csv_Paper = getCSV("Paper", 0)
 for row in csv_Paper:
 	# Id, Title, Year, ConferenceId, JournalId, Keyword
 	pass
 
 print("Reading Author...")
-csv_Author = getCSV("Author")
+csv_Author = getCSV("Author", 0)
 for row in csv_Author:
 	# Id, Name, Affiliation
 	pass
 
 print("Reading PaperAuthor...")
-csv_PaperAuthor = getCSV("PaperAuthor")
+csv_PaperAuthor = getCSV("PaperAuthor", [0, 1])
 
 p_next = 5
 curr_ind = 0
