@@ -1,4 +1,7 @@
 # KDD
+## 패키지
+`pip`로 `numpy`, `scipy`, `scikit-learn`, `pandas`를 설치합니다.
+
 ## 데이터 준비
 ### csv
 `data/raw`에 `csv` 파일들을 저장한다.
