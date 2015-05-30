@@ -11,3 +11,4 @@ train:
 
 test:
 	cd src && python test.py
+	cd src && python score.py
