@@ -13,6 +13,7 @@ def getCSV(file_name, index=None):
 print("Preparing data storge...")
 dict_coPaper = dict()
 dict_coAuthor = dict()
+set_pairs = set()
 
 print("Reading Author...")
 csv_Author = getCSV("Author", 0)
@@ -21,7 +22,23 @@ print("Reading Paper...")
 csv_Paper = getCSV("Paper", 0)
 
 print("Reading Valid & Test")
+csv_Valid = csv.reader(open("../data/raw/Valid.csv", 'r'))
+csv_Valid.next()
+for row in csv_Valid:
+	AuthorId = int(row[0])
+	for str_PaperId in row[1].split(' '):
+		set_pairs.add((int(str_PaperId), AuthorId))
 
+csv_Train = csv.reader(open("../data/raw/Train.csv", 'r'))
+csv_Train.next()
+for row in csv_Train:
+	AuthorId = int(row[0])
+	for str_PaperId in row[1].split(' '):
+		set_pairs.add((int(str_PaperId), AuthorId))
+	for str_PaperId in row[2].split(' '):
+		set_pairs.add((int(str_PaperId), AuthorId))
+
+size_pairs = len(set_pairs)
 
 print("Reading PaperAuthor...")
 csv_PaperAuthor = getCSV("PaperAuthor", [0, 1])
@@ -51,7 +68,11 @@ p_next = 1
 curr_ind = 0
 
 print("Computing pair features...")
-
+for index in set_pairs:
+	curr_ind +=1
+	if curr_ind * 100 >= size_pairs * p_next:
+		print("%d%%..." % p_next)
+		p_next += 1
 
 print("Writing results to file...")
 # TODO
