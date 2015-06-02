@@ -9,7 +9,8 @@ from sklearn.externals import joblib
 
 from feature import getFeature
 
-classifier = KNeighborsClassifier(10)
+classifier = RandomForestClassifier(50)
+# classifier = KNeighborsClassifier(10)
 
 print("Reading Train.csv...")
 train_data = list()

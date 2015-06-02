@@ -3,9 +3,7 @@
 import csv
 
 from operator import itemgetter
-
 from sklearn.externals import joblib
-from feature import getFeature
 
 print("Loading data...")
 csv_ValidSolution = csv.reader(open("../data/raw/ValidSolution.csv", 'r'))
