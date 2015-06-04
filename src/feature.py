@@ -29,7 +29,7 @@ for row in getFeatureCSV("feature_HBN", False):
 for row in getFeatureCSV("feature_test"):
 	key = (int(row[0]), int(row[1]))
 	# dict_features_pa[key] = [int(row[2])]
-	# dict_features_pa[key].extend(map(float, row[2:]))
+	dict_features_pa[key].extend(map(float, row[3:]))
 
 def getFeature(AuthorId, PaperId):
 	key = (PaperId, AuthorId)

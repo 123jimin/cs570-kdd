@@ -14,3 +14,7 @@
 14
 	13 with correct feature_2
 	Score: 0.862298
+
+15
+	14 with domain features (feature_test - pair count)
+	Score: 0.877682
