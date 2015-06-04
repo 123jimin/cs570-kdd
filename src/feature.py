@@ -17,14 +17,25 @@ for row in getFeatureCSV("paperauthor_author_feature"):
 for row in getFeatureCSV("feature1"):
 	dict_features_a[int(row[0])] = map(float, row[1:])
 
+for row in getFeatureCSV("feature2"):
+	key = (int(row[0]), int(row[1]))
+	if key in dict_features_pa:
+		dict_features_pa[key].extend(map(float, row[2:]))
+
 for row in getFeatureCSV("feature_HBN", False):
 	key = (int(row[0]), int(row[1]))
 	dict_features_pa[key].extend(map(float, row[2:]))
+
+for row in getFeatureCSV("feature_test"):
+	key = (int(row[0]), int(row[1]))
+	# dict_features_pa[key] = [int(row[2])]
+	# dict_features_pa[key].extend(map(float, row[2:]))
 
 def getFeature(AuthorId, PaperId):
 	key = (PaperId, AuthorId)
 	if key not in dict_features_pa:
 		raise Exception("key not in features")
+	return dict_features_pa[key]
 	if AuthorId not in dict_features_a:
 		raise Exception("author not in features")
-	return dict_features_pa[(PaperId, AuthorId)] + dict_features_a[AuthorId]
+	return dict_features_pa[key] + dict_features_a[AuthorId]

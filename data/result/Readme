@@ -1,0 +1,12 @@
+10
+	Feature: paperauthor_author_feature, feature_1, feature_HBN, feature_test
+	Classifier: RandomForestClassifier(50)
+	Score: 0.968561
+11
+	10
+12
+	10 + Domain
+13
+	Feature: paperauthor_author_feature, feature_1, feature_HBN, feature_2
+	Classifier: RandomForestClassifier(50)
+	Score: 0.861530
