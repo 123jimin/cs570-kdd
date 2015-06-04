@@ -78,6 +78,7 @@ for row in csv_Train:
 		set_pairs.add((int(str_PaperId), AuthorId))
 
 size_pairs = len(set_pairs)
+print("Rows = %d" % size_pairs)
 
 print("Reading Conference & Journal")
 dict_domain = dict()

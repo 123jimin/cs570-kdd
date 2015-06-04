@@ -7,14 +7,18 @@
 12
 	10 + Domain
 13
-	Feature: paperauthor_author_feature, feature_1, feature_HBN, feature_2
+	Feature: paperauthor_author_feature, feature_1, feature_HBN, wrong feature_2
 	Classifier: RandomForestClassifier(50)
 	Score: 0.861530
 
 14
-	13 with correct feature_2
+	Essentially similar to 13 with updated wrong feature_2
 	Score: 0.862298
 
 15
 	14 with domain features (feature_test - pair count)
 	Score: 0.877682
+
+16
+	15 with correct feature_2 and feature_4
+	Score: 0.886002
