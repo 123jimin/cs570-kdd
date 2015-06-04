@@ -10,3 +10,7 @@
 	Feature: paperauthor_author_feature, feature_1, feature_HBN, feature_2
 	Classifier: RandomForestClassifier(50)
 	Score: 0.861530
+
+14
+	13 with correct feature_2
+	Score: 0.862298
