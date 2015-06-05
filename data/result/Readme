@@ -43,3 +43,7 @@
 	20 with
 	Classifier: AdaBoostClassifier(RandomForestClassifier(30), 10)
 	Score: 0.888728
+
+22
+	20 with feature_5
+	Score: 0.887215

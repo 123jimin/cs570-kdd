@@ -11,6 +11,7 @@ def getCSV(file_name, header=True):
 	return reader
 
 def cutFeaturePA(file_name, header=True, rev=False):
+	print("Cutting feature %s..." % file_name)
 	csv_in = getCSV("feature/%s" % file_name, False)
 	csv_in_header = None
 	set_keys = set()
@@ -45,7 +46,11 @@ for row in csv_Train:
 	for str_PaperId in row[2].split(' '):
 		set_pairs.add((int(str_PaperId), AuthorId))
 
+"""
 cutFeaturePA("paperauthor_author_feature")
 cutFeaturePA("feature2", rev=True)
 cutFeaturePA("feature4", rev=True)
 cutFeaturePA("feature_HBN", header=False)
+"""
+
+cutFeaturePA("feature5", rev=True)

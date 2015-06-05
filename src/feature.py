@@ -67,6 +67,7 @@ for row in getFeatureCSV("feature1"):
 addFeatures("paperauthor_author_feature_cut")
 addFeatures("feature2_cut")
 addFeatures("feature4_cut")
+addFeatures("feature5_cut")
 addFeatures("feature_HBN_cut", header=False)
 addFeatures("feature_test")
 
