@@ -34,3 +34,12 @@
 19
 	17 with features cut
 	Score: 0.886302
+
+20
+	19 with normalized features
+	Score: 0.884743
+
+21
+	20 with
+	Classifier: AdaBoostClassifier(RandomForestClassifier(30), 10)
+	Score: 0.888728

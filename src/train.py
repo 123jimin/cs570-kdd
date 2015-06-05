@@ -9,7 +9,8 @@ from sklearn.externals import joblib
 
 from feature import getFeature
 
-classifier = RandomForestClassifier(50)
+classifier = AdaBoostClassifier(RandomForestClassifier(30), 10)
+# classifier = RandomForestClassifier(50)
 # classifier = KNeighborsClassifier(10)
 
 print("Reading Train.csv...")
