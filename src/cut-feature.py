@@ -18,6 +18,8 @@ def cutFeaturePA(file_name, header=True, rev=False):
 	if header:
 		csv_in_header = csv_in.next()
 	csv_out = csv.writer(open("../data/feature/%s_cut.csv" % file_name, 'wb'))
+	if rev:
+		csv_in_header = [csv_in_header[1], csv_in_header[0]] + csv_in_header[2:]
 	if header:
 		csv_out.writerow(csv_in_header)
 	for row in csv_in:
