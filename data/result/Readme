@@ -26,3 +26,11 @@
 17
 	16 with more feature_HBN
 	Score: 0.886522
+
+18
+	17 with features cut / + pair count
+	Score: 0.970744
+
+19
+	17 with features cut
+	Score: 0.886302
