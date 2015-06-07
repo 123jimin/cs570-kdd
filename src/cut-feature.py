@@ -53,6 +53,7 @@ cutFeaturePA("paperauthor_author_feature")
 cutFeaturePA("feature2", rev=True)
 cutFeaturePA("feature4", rev=True)
 cutFeaturePA("feature_HBN", header=False)
+cutFeaturePA("feature5", rev=True)
 """
 
-cutFeaturePA("feature5", rev=True)
+cutFeaturePA("feature6", rev=True)

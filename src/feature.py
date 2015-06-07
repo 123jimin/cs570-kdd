@@ -1,4 +1,8 @@
-import math, csv
+import math, csv, numpy
+
+numpy.set_printoptions(threshold='nan')
+
+from scipy import linalg
 
 def getFeatureCSV(file_name, header=True):
 	print("Reading %s..." % file_name)
@@ -44,6 +48,8 @@ def normalizeFeatures(dict_features, feature_name):
 			first_val = val
 			val_changed = [False] * len(val)
 		for i in xrange(len(val)):
+			if numpy.isnan(val[i]) or numpy.isinf(val[i]):
+				val[i] = 0
 			sum_values[i] += val[i]
 			sum_sq_values[i] += val[i]**2
 			if val[i] != first_val[i]:
@@ -64,8 +70,9 @@ def normalizeFeatures(dict_features, feature_name):
 		result_feature = []
 		for i in xrange(len(sample_average)):
 			if val_changed[i]:
-				result_feature.append((dict_features[key][i] - sample_average[i]) / sample_variance[i])
-		dict_features[key] = result_feature
+				f_val = dict_features[key][i]
+				result_feature.append((f_val - sample_average[i]) / sample_variance[i])
+		dict_features[key] = numpy.array(result_feature)
 
 
 set_keys_tmp.clear()
@@ -78,18 +85,47 @@ for row in getFeatureCSV("feature1"):
 addFeatures("paperauthor_author_feature_cut")
 addFeatures("feature2_cut")
 addFeatures("feature4_cut")
-addFeatures("feature5_cut")
+addFeatures("feature6_cut")
 addFeatures("feature_HBN_cut", header=False)
 addFeatures("feature_test")
 
+print("Merging features...")
+for key, val in dict_features_pa.iteritems():
+	dict_features_pa[key].extend(dict_features_a[key[1]])
+
+dict_features_a.clear()
+
 normalizeFeatures(dict_features_pa, "PaperAuthor")
-normalizeFeatures(dict_features_a, "Author")
+# normalizeFeatures(dict_features_a, "Author")
+
+print("Doing PCA...")
+S = 0
+for key in dict_features_pa:
+	row = dict_features_pa[key]
+	xx = numpy.array(row).reshape((len(row), 1))
+	S += numpy.dot(xx, numpy.transpose(xx))
+
+eigval, eigvec = linalg.eigh(S)
+eigvec = numpy.transpose(eigvec)
+
+zeig = sorted(zip(eigval, eigvec), cmp=lambda x,y: 1 if abs(y[0])>abs(x[0]) else -1)
+
+evecs = numpy.array([b for a,b in zeig])
+evals = numpy.array([a for a,b in zeig])
+
+print(evals)
+print(evecs)
+
+cut_features = 3
+
+print("Projecting... (# of features = %d)" % cut_features)
+for key in dict_features_pa:
+	x = dict_features_pa[key]
+	y = []
+	for i in xrange(cut_features):
+		y.append(numpy.dot(x, evecs[i].reshape(len(x))))
+	dict_features_pa[key] = numpy.array(y)
 
 def getFeature(AuthorId, PaperId):
 	key = (PaperId, AuthorId)
-	if key not in dict_features_pa:
-		raise Exception("key not in features")
 	return dict_features_pa[key]
-	if AuthorId not in dict_features_a:
-		raise Exception("author not in features")
-	return dict_features_pa[key] + dict_features_a[AuthorId]
